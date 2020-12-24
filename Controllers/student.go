@@ -8,7 +8,7 @@ import (
 	models "iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/models"
 )
 
-func findStudent(ctx *gin.Context) {
+func FindStudent(ctx *gin.Context) {
 	db := ctx.MustGet("db").(*gorm.DB)
 	var students []models.Students
 	db.Find(&students)

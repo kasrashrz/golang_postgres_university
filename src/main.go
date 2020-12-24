@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	controllers "iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/Controllers"
 	"iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/models"
 )
 
@@ -12,7 +13,6 @@ func main() {
 		ctx.Set("db", db)
 		ctx.Next()
 	})
-
-	server.GET("/", controllers.findStudent())
+	server.GET("/", controllers.FindStudent)
 	server.Run()
 }
