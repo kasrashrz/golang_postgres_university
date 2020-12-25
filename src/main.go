@@ -14,7 +14,8 @@ func main() {
 		ctx.Next()
 	})
 	server.GET("/", controllers.FindStudent)
-	server.POST("/stu", controllers.CreateStudent)
+	server.POST("/student", controllers.CreateStudent)
+	server.DELETE("/student/delete/:id", controllers.DeleteStudent)
 
 	server.Run()
 }

@@ -25,3 +25,13 @@ func CreateStudent(ctx *gin.Context) {
 	newStudent := models.Students{Id: input.Id, Name: input.Name, Age: input.Age, Mail: input.Mail, NationalCode: input.NationalCode, Address: input.Address}
 	db.Create(&newStudent)
 }
+
+func DeleteStudent(ctx *gin.Context) {
+	db := ctx.MustGet("db").(*gorm.DB)
+	var student models.Students
+	if err := db.Where("id = ?", ctx.Param("id")).First(&student).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
+	}
+	db.Delete(&student)
+	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
+}
