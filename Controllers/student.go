@@ -12,5 +12,5 @@ func FindStudent(ctx *gin.Context) {
 	db := ctx.MustGet("db").(*gorm.DB)
 	var students []models.Students
 	db.Find(&students)
-	ctx.JSON(http.StatusOK, gin.H{"data": students})
+	ctx.JSON(http.StatusOK, gin.H{"result": students})
 }
