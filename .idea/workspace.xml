@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a58d0cc6-d704-473e-abde-52bc016e5bf1" name="Default Changelist" comment="">
+    <list default="true" id="a58d0cc6-d704-473e-abde-52bc016e5bf1" name="Default Changelist" comment="Trying to handle many2many tables in postgres using autoIncrement but its not working">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/student.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/course.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/setup.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/students.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/students.go" afterDir="false" />
     </list>
@@ -52,6 +57,22 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Trying to handle many2many tables in postgres using autoIncrement but its not working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to handle many2many tables in postgres using autoIncrement but its not working" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

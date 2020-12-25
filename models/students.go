@@ -1,16 +1,17 @@
 package models
 
-type Students struct {
-	Id           string `json:"id" gorm:"primaryKey;autoIncrement:true"`
+import "github.com/jinzhu/gorm"
+type Student struct {
+	gorm.Model
 	Name         string `json:"name"`
 	Age          int    `json:"age"`
 	Mail         string `json:"mail"`
 	NationalCode string `json:"nationalCode"`
 	Address      string `json:"address"`
-	// Course       []Course `json:"course" `
+	Courses       []*Course `json:"course" gorm:"many2many:student_courses"`
 }
 type CreateStudentInput struct {
-	Id           string `json:"id" gorm:"primaryKey;autoIncrement:true"`
+	gorm.Model
 	Name         string `json:"name"`
 	Age          int    `json:"age"`
 	Mail         string `json:"mail"`
@@ -19,7 +20,7 @@ type CreateStudentInput struct {
 }
 
 type UpdateBookInput struct {
-	Id           string `json:"id" gorm:"primaryKey;autoIncrement:true"`
+	gorm.Model
 	Name         string `json:"name"`
 	Age          int    `json:"age"`
 	Mail         string `json:"mail"`
