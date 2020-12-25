@@ -16,7 +16,7 @@ func SetupModels() *gorm.DB {
 		fmt.Println(err)
 	}
 	db.AutoMigrate(&Students{})
-	m := Students{Id: "sdfdsf", Name: "ali", Age: 18, Mail: "ali@mail", NationalCode: "asdasdasda", Address: "niavaran"}
+	m := Students{Id: "idk", Name: "ali", Age: 18, Mail: "ali@mail", NationalCode: "asdasdasda", Address: "niavaran"}
 	db.Create(&m)
 	return db
 }
