@@ -24,6 +24,23 @@ func CreateStudent(ctx *gin.Context) {
 	}
 	newStudent := models.Students{Id: input.Id, Name: input.Name, Age: input.Age, Mail: input.Mail, NationalCode: input.NationalCode, Address: input.Address}
 	db.Create(&newStudent)
+	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
+
+}
+func UpdateStudent(ctx *gin.Context) {
+	var student models.Students
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Where("id = ?", ctx.Param("id")).First(&student).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	var input models.UpdateBookInput
+	if err := ctx.ShouldBindJSON(&input); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	db.Model(&student).Updates(input)
+	ctx.JSON(http.StatusOK, gin.H{"data": student})
 }
 
 func DeleteStudent(ctx *gin.Context) {
