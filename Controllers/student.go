@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	//"gorm.io/gorm"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
+	//"github.com/jinzhu/gorm"
 	models "iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/models"
 )
 
@@ -24,14 +24,13 @@ func CreateStudent(ctx *gin.Context) {
 		return
 	}
 	newStudent := models.Student{
-		Model:        gorm.Model{},
+		//Model:        gorm.Model{},
 		Name:         input.Name,
 		Age:          input.Age,
 		Mail:         input.Mail,
 		NationalCode: input.NationalCode,
 		Address:      input.Address,
-
-		//Courses: []models.Course{{Model:gorm.Model{} , Name: input.Courses, QuantityPlace: , StartDate: , EndDate: , CreatedDate: , Students: }},
+		Courses: []models.Course{{ Name:"math", QuantityPlace:10 , StartDate:"1400" , EndDate:"1400" , CreatedDate: "1400"}},
 	}
 	db.Create(&newStudent)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
