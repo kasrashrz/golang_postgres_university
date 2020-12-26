@@ -12,8 +12,6 @@ import (
 )
 
 func SetupModels() *gorm.DB {
-	//dsn := "postgres://admin:root@127.0.0.1:5432/go_uni"
-	//db, err := gorm.Open("postgres://admin:root@127.0.0.1:5432/go_uni")
 	dsn := "user=admin" + " password=root"  + " dbname=go_uni	 port=5432 TimeZone=Asia/Shanghai"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true,
 	})
