@@ -23,7 +23,16 @@ func CreateStudent(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	newStudent := models.Student{ Name: input.Name, Age: input.Age, Mail: input.Mail, NationalCode: input.NationalCode, Address: input.Address}
+	newStudent := models.Student{
+		Model:        gorm.Model{},
+		Name:         input.Name,
+		Age:          input.Age,
+		Mail:         input.Mail,
+		NationalCode: input.NationalCode,
+		Address:      input.Address,
+
+		//Courses: []models.Course{{Model:gorm.Model{} , Name: input.Courses, QuantityPlace: , StartDate: , EndDate: , CreatedDate: , Students: }},
+	}
 	db.Create(&newStudent)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 

@@ -4,8 +4,8 @@ import "github.com/jinzhu/gorm"
 
 type Course struct {
 	gorm.Model
-	Name          string    `json:"name" gorm:"unique;"`
-	QuantityPlace int       `json:"name"`
+	Name          string    `gorm:"unique;" json:"name"`
+	QuantityPlace int       `json:"quantityPlace"`
 	StartDate     string    `json:"startDate"`
 	EndDate       string    `json:"EndDate"`
 	CreatedDate   string    `json:"CreatedDate"`
