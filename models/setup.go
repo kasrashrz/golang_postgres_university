@@ -20,27 +20,44 @@ func SetupModels() *gorm.DB {
 	fmt.Print(err)
 
 	test_stu := &Student{
-		Name:         "aliv",
+		Name:         "ali",
 		Age:          10,
-		Mail:         "asdaasdsdasd",
-		NationalCode: "aasasddasdas",
-		Address:      "asdasadsdasd",
-		CourseID:     uint(1),
-		Courses:      []Course{},
+		Mail:         "ali.maik",
+		NationalCode: "fdoisdjvoijv0eiwja",
+		Address:      "teh",
+		Courses:      []Course{
+			{
+				Model:         gorm.Model{},
+				Name:          "math",
+				QuantityPlace: 1,
+				StartDate:     "1400",
+				EndDate:       "1401",
+				CreatedDate:   "1399",
+				Students:      nil,
+			},
+		},
 	}
-	c1 := Course{
-		Name:          "math",
-		QuantityPlace: 20,
-		StartDate:     "1400",
-		EndDate:       "1401",
-		CreatedDate:   "1399",
-		StudentID:     uint(1),
-		Students:      []Student{},
-	}
-	db.Create(&c1)
-	db.Create(&test_stu)
-	// db.DropTableIfExists(&Student{}, &Course{})
-	// db.CreateTable(&Student{}, &Course{})
+	//c1 := Course{
+	//	Name:          "aljebra",
+	//	QuantityPlace: 20,
+	//	StartDate:     "1400",
+	//	EndDate:       "1401",
+	//	CreatedDate:   "1399",
+	//	Students:      []Student{
+	//		{
+	//			Model:        gorm.Model{},
+	//			Name:         "kasra",
+	//			Age:          10,
+	//			Mail:         "k.gamil",
+	//			NationalCode: "asdfsdfsdfsd",
+	//			Address:      "velenjak",
+	//		},
+	//	},
+	//}
+	//db.Save(&c1)
+	db.Save(&test_stu)
+	//db.DropTableIfExists(&Student{}, &Course{})
+	//db.CreateTable(&Student{}, &Course{})
 
 	return db
 }

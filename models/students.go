@@ -9,7 +9,7 @@ type Student struct {
 	Mail         string   `json:"mail"`
 	NationalCode string   `json:"nationalCode"`
 	Address      string   `json:"address"`
-	CourseID     uint     `sql:"index"`
+	//CourseID     uint     `sql:"index"`
 	Courses      []Course `gorm:"many2many:students_courses"`
 }
 
@@ -20,7 +20,7 @@ type CreateStudentInput struct {
 	Mail         string   `json:"mail"`
 	NationalCode string   `json:"nationalCode"`
 	Address      string   `json:"address"`
-	CourseID     uint     `sql:"index"`
+	//CourseID     uint     `sql:"index"`
 	Courses      []Course `gorm:"many2many:students_courses"`
 }
 
@@ -31,6 +31,6 @@ type UpdateBookInput struct {
 	Mail         string   `json:"mail"`
 	NationalCode string   `json:"nationalCode"`
 	Address      string   `json:"address"`
-	CourseID     uint     `sql:"index"`
+	//CourseID     uint     `sql:"index"`
 	Courses      []Course `gorm:"many2many:students_courses"`
 }
