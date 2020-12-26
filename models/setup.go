@@ -19,13 +19,13 @@ func SetupModels() *gorm.DB {
 	//err := db.DB().Ping()
 	fmt.Print(err)
 
-	test_stu := Student{
+	test_stu := &Student{
 		Name:         "aliv",
 		Age:          10,
 		Mail:         "asdaasdsdasd",
 		NationalCode: "aasasddasdas",
 		Address:      "asdasadsdasd",
-		CouseID:      uint(1),
+		CourseID:     uint(1),
 		Courses:      []Course{},
 	}
 	c1 := Course{
@@ -37,9 +37,8 @@ func SetupModels() *gorm.DB {
 		StudentID:     uint(1),
 		Students:      []Student{},
 	}
-	db.Save(&test_stu)
-	db.Save(&c1)
-	// db.Create(&c1)
+	db.Create(&c1)
+	db.Create(&test_stu)
 	// db.DropTableIfExists(&Student{}, &Course{})
 	// db.CreateTable(&Student{}, &Course{})
 
