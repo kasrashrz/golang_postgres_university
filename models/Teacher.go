@@ -7,7 +7,7 @@ type Teacher struct {
 	Name          string    `json:"name"`
 	Mail         string   `json:"mail"`
 	NationalCode string   `gorm:"unique;" json:"nationalCode"`
-	Courses      []Course `gorm:"many2many:students_courses"`
+	Courses      []Course `gorm:"many2many:teacher_courses"`
 	Students      []Student `gorm:"many2many:students_teachers"`
 }
 type CreateTeacherInput struct {

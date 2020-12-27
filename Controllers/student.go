@@ -20,14 +20,14 @@ func FindStudent(ctx *gin.Context) {
 func CreateStudent(ctx *gin.Context) {
 	db := ctx.MustGet("db").(*gorm.DB)
 	//fmt.Print("state1")
-	var input models.CreateStudentInput
+	var input models.Student
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		//fmt.Print("state2")
 		return
 	}
 	fmt.Print(input)
-	newStudent := models.CreateStudentInput{
+	newStudent := models.Student{
 		Name:         input.Name,
 		Age:          input.Age,
 		Mail:         input.Mail,
@@ -38,9 +38,9 @@ func CreateStudent(ctx *gin.Context) {
 		newStudent.Courses = append(newStudent.Courses, course)
 
 	}
-	fmt.Print("state3")
-	db.Create(&newStudent)
-	fmt.Print("state4")
+	//fmt.Print("state3")
+	db.Save(&newStudent)
+	//fmt.Print("state4")
 
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 
