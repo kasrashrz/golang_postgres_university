@@ -36,7 +36,6 @@ func CreateStudent(ctx *gin.Context) {
 	}
 	for _, course := range input.Courses{
 		newStudent.Courses = append(newStudent.Courses, course)
-
 	}
 	//fmt.Print("state3")
 	db.Save(&newStudent)
@@ -46,16 +45,19 @@ func CreateStudent(ctx *gin.Context) {
 
 }
 func UpdateStudent(ctx *gin.Context) {
-	var student models.UpdateStudentInput
+	var student models.Student
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Where("id = ?", ctx.Param("id")).First(&student).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
-	var input models.UpdateStudentInput
+	var input models.Student
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
+	}
+	for _, course := range input.Courses{
+		student.Courses = append(student.Courses, course)
 	}
 	db.Model(&student).Updates(input)
 	ctx.JSON(http.StatusOK, gin.H{"data": student})
