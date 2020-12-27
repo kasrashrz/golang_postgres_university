@@ -91,28 +91,7 @@ func SetupModels() *gorm.DB {
 	//	}},
 	//	UniversityBranch: []UniversityBranch{{ Name: "azad shomal", Address:"darabad" , URL: "www.Ashomal.ir", CreationDate: "1399", UniversityID: 1 , Courses: []Course{{ Name: "chemistry", QuantityPlace: 10 , StartDate: "1400" , EndDate:"1400" , CreatedDate:"1400"  }} }},
 	//}
-	uni := UniversityBranch{
-		Name:         "azad jonob",
-		Address:      "gisha",
-		URL:          "www.azadjonob.ir",
-		CreationDate: "none",
-		UniversityID: 3,
-		Courses: []Course{{
-			Name:             "math",
-			QuantityPlace:    1,
-			StartDate:        "1400",
-			EndDate:          "1401",
-			CreatedDate:      "1399",
-			//UniversityBranch: nil,
-			//Students:         nil,
-		}},
-	}
-	//db.Save(&c1)
-	//err = db.Save(&test_stu).Error
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	err = db.Save(&uni).Error
+	//err = db.Save(&uni).Error
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -10,6 +10,7 @@ type Student struct {
 	NationalCode string   `json:"nationalCode"`
 	Address      string   `json:"address"`
 	Courses      []Course `gorm:"many2many:students_courses"`
+	Teachers      []Teacher `gorm:"many2many:students_teachers"`
 	UniversityID	uint 	`json:"university_id"`
 }
 
@@ -24,7 +25,7 @@ type CreateStudentInput struct {
 	Courses      []Course `gorm:"many2many:students_courses"`
 }
 
-type UpdateBookInput struct {
+type UpdateStudentInput struct {
 	gorm.Model
 	Name         string   `json:"name"`
 	Age          int      `json:"age"`
