@@ -23,7 +23,7 @@ func CreateStudent(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	newStudent := models.Student{
+	newStudent := models.CreateStudentInput{
 		//Model:        gorm.Model{},
 		Name:         input.Name,
 		Age:          input.Age,
@@ -37,13 +37,13 @@ func CreateStudent(ctx *gin.Context) {
 
 }
 func UpdateStudent(ctx *gin.Context) {
-	var student models.Student
+	var student models.UpdateStudentInput
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Where("id = ?", ctx.Param("id")).First(&student).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
-	var input models.UpdateBookInput
+	var input models.UpdateStudentInput
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

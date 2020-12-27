@@ -4,8 +4,6 @@ import (
 	"fmt"
 	_ "fmt"
 	"gorm.io/driver/postgres"
-	"log"
-
 	//"log"
 
 	"gorm.io/gorm"
@@ -75,26 +73,18 @@ func SetupModels() *gorm.DB {
 	//	},
 	//}
 
-    //uni := University{
-	//	Name:         "azad uni",
-	//	Address:      "none",
-	//	URL:          "none",
-	//	CreationDate: "none",
-	//	Student: []Student{{
-	//		Name:         "ali",
-	//		Age:          10,
-	//		Mail:         "ali.maik",
-	//		NationalCode: "fdoisdjvoijv0eiwja",
-	//		Address:      "teh",
-	//		Courses:      nil,
-	//		UniversityID: 1,
-	//	}},
-	//	UniversityBranch: []UniversityBranch{{ Name: "azad shomal", Address:"darabad" , URL: "www.Ashomal.ir", CreationDate: "1399", UniversityID: 1 , Courses: []Course{{ Name: "chemistry", QuantityPlace: 10 , StartDate: "1400" , EndDate:"1400" , CreatedDate:"1400"  }} }},
+    //uni := Teacher{
+	//	Name:         "Teascher1",
+	//	Mail:         "teacher.mai;",
+	//	NationalCode: "adafijsdpifjs",
+	//	Courses:      nil,
+	//	Students:     nil,
 	//}
+	//
 	//err = db.Save(&uni).Error
-	if err != nil {
-		log.Fatal(err)
-	}
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 	//db.Save(uni)
 	//db.(&Student{}, &Course{},&UniversityBranch{},&University{})
 	//db.CreateTable(&Student{}, &Course{},&UniversityBranch{},&University{})

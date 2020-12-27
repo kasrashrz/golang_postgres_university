@@ -14,10 +14,15 @@ func main() {
 		ctx.Next()
 	})
 	// students
-	server.GET("/", controllers.FindStudent)
-	server.POST("/student", controllers.CreateStudent)
+	server.GET("/students", controllers.FindStudent)
+	server.POST("/student/create", controllers.CreateStudent)
 	server.POST("/student/delete/:id", controllers.DeleteStudent)
 	server.POST("/student/update/:id", controllers.UpdateStudent)
+	// teachers
+	server.GET("/teachers", controllers.FindTeacher)
+	//server.POST("/teacher/create", controllers.)
+	//server.POST("/teacher/delete/:id", controllers.)
+	server.POST("/teacher/delete/:id", controllers.DeleteTeacher)
 
 	server.Run()
 }
