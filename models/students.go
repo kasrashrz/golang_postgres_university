@@ -9,8 +9,8 @@ type Student struct {
 	Mail         string   `json:"mail"`
 	NationalCode string   `json:"nationalCode"`
 	Address      string   `json:"address"`
-	//CourseID     uint     `sql:"index"`
 	Courses      []Course `gorm:"many2many:students_courses"`
+	UniversityID	uint 	`json:"university_id"`
 }
 
 type CreateStudentInput struct {

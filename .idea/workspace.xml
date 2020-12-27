@@ -2,13 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a58d0cc6-d704-473e-abde-52bc016e5bf1" name="Default Changelist" comment="Trying to handle many2many tables in postgres using autoIncrement but its not working">
+      <change afterPath="$PROJECT_DIR$/models/university.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/university_branch.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/student.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/course.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/students.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/students.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
@@ -28,6 +39,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -74,16 +86,5 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/models/setup.go</url>
-          <line>39</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
