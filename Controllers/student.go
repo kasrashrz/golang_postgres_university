@@ -1,6 +1,7 @@
 package Controllers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -18,21 +19,29 @@ func FindStudent(ctx *gin.Context) {
 
 func CreateStudent(ctx *gin.Context) {
 	db := ctx.MustGet("db").(*gorm.DB)
+	//fmt.Print("state1")
 	var input models.CreateStudentInput
-	if err := ctx.ShouldBindJSON(&input); err != nil {
+	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		//fmt.Print("state2")
 		return
 	}
+	fmt.Print(input)
 	newStudent := models.CreateStudentInput{
-		//Model:        gorm.Model{},
 		Name:         input.Name,
 		Age:          input.Age,
 		Mail:         input.Mail,
 		NationalCode: input.NationalCode,
 		Address:      input.Address,
-		Courses: []models.Course{{ Name:"math", QuantityPlace:10 , StartDate:"1400" , EndDate:"1400" , CreatedDate: "1400"}},
 	}
+	for _, course := range input.Courses{
+		newStudent.Courses = append(newStudent.Courses, course)
+
+	}
+	fmt.Print("state3")
 	db.Create(&newStudent)
+	fmt.Print("state4")
+
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 
 }
@@ -61,3 +70,5 @@ func DeleteStudent(ctx *gin.Context) {
 	db.Delete(&student)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 }
+
+
