@@ -16,7 +16,7 @@ func main() {
 	// students
 	server.GET("/students", controllers.FindStudent)
 	server.POST("/student/create", controllers.CreateStudent)
-	//server.POST("/student/delete/:id", controllers.DeleteStudent)
+	server.POST("/student/delete/:id", controllers.DeleteStudent)
 	server.POST("/student/update/:id", controllers.UpdateStudent)
 	// teachers
 	server.GET("/teachers", controllers.FindTeacher)
@@ -26,8 +26,8 @@ func main() {
 	// courses
 	server.GET("/courses", controllers.FindCourse)
 	server.POST("/course/create", controllers.CreateCourse)
-	//server.POST("/teacher/delete/:id", controllers.)
 	server.POST("/course/delete/:id", controllers.DeleteCourse)
+	server.POST("/course/update/:id", controllers.UpdateCourse)
 
 	server.Run()
 }

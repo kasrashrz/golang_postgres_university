@@ -19,46 +19,50 @@ func FindCourse(ctx *gin.Context){
 func CreateCourse(ctx *gin.Context){
 	db := ctx.MustGet("db").(*gorm.DB)
 	var input models.Course
+	if err := db.Where("id = ?", ctx.Param("id")).First(&input).Error; err != nil {
+		if err := ctx.ShouldBindJSON(&input); err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		newCourse := models.Course{
+			Name:             input.Name,
+			QuantityPlace:    input.QuantityPlace,
+			StartDate:        input.StartDate,
+			EndDate:          input.EndDate,
+			CreatedDate:      input.CreatedDate,
+
+		}
+		for _,uni_branch  := range input.UniversityBranch{
+			newCourse.UniversityBranch = append(newCourse.UniversityBranch,uni_branch)
+		}
+		for _,students  := range input.Students{
+			newCourse.Students = append(newCourse.Students,students)
+		}
+
+		db.Save(&newCourse)
+		ctx.JSON(http.StatusOK,gin.H{
+			"data" : true,
+		})
+	} else {
+		UpdateCourse(ctx)
+	}
+}
+
+func UpdateCourse(ctx *gin.Context) {
+	var course models.Course
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	var input models.Course
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	newCourse := models.Course{
-		Name:             input.Name,
-		QuantityPlace:    input.QuantityPlace,
-		StartDate:        input.StartDate,
-		EndDate:          input.EndDate,
-		CreatedDate:      input.CreatedDate,
-
-	}
-	for _,uni_branch  := range input.UniversityBranch{
-		newCourse.UniversityBranch = append(newCourse.UniversityBranch,uni_branch)
-	}
-	for _,students  := range input.Students{
-		newCourse.Students = append(newCourse.Students,students)
-	}
-
-	db.Save(&newCourse)
-	ctx.JSON(http.StatusOK,gin.H{
-		"data" : true,
-	})
+	db.Model(&course).Updates(input)
+	ctx.JSON(http.StatusOK, gin.H{"data": course})
 }
-
-//func UpdateTeacher(ctx *gin.Context) {
-//	var teacher models.UpdateTeacherInput
-//	db := ctx.MustGet("db").(*gorm.DB)
-//	if err := db.Where("id = ?", ctx.Param("id")).First(&teacher).Error; err != nil {
-//		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-//		return
-//	}
-//	var input models.UpdateTeacherInput
-//	if err := ctx.ShouldBindJSON(&input); err != nil {
-//		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-//		return
-//	}
-//	db.Model(&teacher).Updates(input)
-//	ctx.JSON(http.StatusOK, gin.H{"data": teacher})
-//}
 
 func DeleteCourse(ctx *gin.Context){
 	db := ctx.MustGet("db").(gorm.DB)
