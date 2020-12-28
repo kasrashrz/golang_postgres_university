@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type UniversityBranch struct {
 	gorm.Model
-	Name         string   `json:"name"`
+	Name         string   `gorm:"unique;"json:"name"`
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
 	CreationDate string	  `json:"CreationDate"`

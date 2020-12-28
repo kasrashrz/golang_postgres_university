@@ -20,12 +20,17 @@ func main() {
 	server.POST("/student/update/:id", controllers.UpdateStudent)
 	// teachers
 	server.GET("/teachers", controllers.FindTeacher)
-	//server.POST("/teacher/create", controllers.)
-	//server.POST("/teacher/delete/:id", controllers.)
+	server.POST("/teacher/create", controllers.CreateTeacher)
+	server.POST("/teacher/delete/:id", controllers.UpdateTeacher)
 	server.POST("/teacher/delete/:id", controllers.DeleteTeacher)
 	// courses
 	server.GET("/courses", controllers.FindCourse)
 	server.POST("/course/create", controllers.CreateCourse)
+	server.POST("/course/delete/:id", controllers.DeleteCourse)
+	server.POST("/course/update/:id", controllers.UpdateCourse)
+	// universities
+	server.GET("/courses", controllers.FindUniversity)
+	server.POST("/course/create", controllers.CreateU)
 	server.POST("/course/delete/:id", controllers.DeleteCourse)
 	server.POST("/course/update/:id", controllers.UpdateCourse)
 

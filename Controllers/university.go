@@ -16,19 +16,32 @@ func FindUniversity(ctx *gin.Context){
 	})
 }
 
-//func CreateTeacher(ctx *gin.Context){
-//	db := ctx.MustGet("db").(*gorm.DB)
-//	var input models.CreateTeacherInput
-//	if err := ctx.ShouldBindJSON(&input); err != nil {
-//		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-//		return
-//	}
-//	newTeacher := models.CreateTeacherInput{}
-//	db.Save(&newTeacher)
-//	ctx.JSON(http.StatusOK,gin.H{
-//		"data" : true,
-//	})
-//}
+func CreateUniversity(ctx *gin.Context){
+	db := ctx.MustGet("db").(*gorm.DB)
+	var input models.CreateUniversityInput
+	if err := ctx.ShouldBindJSON(&input); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	newUniversity := models.CreateUniversityInput{
+		Name:             "",
+		Address:          "",
+		URL:              "",
+		CreationDate:     "",
+		//Student:          nil,
+		//UniversityBranch: nil,
+	}
+	for _, student := range input.Students {
+		newUniversity.Students = append(newUniversity.Students, student)
+	}
+	for _, uni_branches := range input.UniversityBranches {
+		newUniversity.UniversityBranches = append(newUniversity.UniversityBranches, uni_branches)
+	}
+	db.Save(&newUniversity)
+	ctx.JSON(http.StatusOK,gin.H{
+		"data" : true,
+	})
+}
 
 //func UpdateTeacher(ctx *gin.Context) {
 //	var teacher models.UpdateTeacherInput

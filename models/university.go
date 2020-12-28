@@ -8,8 +8,8 @@ type University struct {
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
     CreationDate string	  `json:"CreationDate"`
-	Student []Student
-	UniversityBranch []UniversityBranch
+	Students []Student
+	UniversityBranches []UniversityBranch
 }
 
 type CreateUniversityInput struct {
@@ -18,8 +18,8 @@ type CreateUniversityInput struct {
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
 	CreationDate string	  `json:"CreationDate"`
-	Student []Student
-	UniversityBranch []UniversityBranch
+	Students []Student
+	UniversityBranches []UniversityBranch
 }
 
 type UpdateUniversityInput struct {
@@ -28,6 +28,6 @@ type UpdateUniversityInput struct {
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
 	CreationDate string	  `json:"CreationDate"`
-	Student []Student
-	UniversityBranch []UniversityBranch
+	Students []Student
+	UniversityBranches []UniversityBranch
 }

@@ -2,35 +2,39 @@ package Controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
-	models "iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/models"
+	"iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/models"
 	"net/http"
+	"gorm.io/gorm"
 )
 
-func FindTeacher(ctx *gin.Context){
+
+func FindUniversityBranch(ctx *gin.Context){
 	db := ctx.MustGet("db").(*gorm.DB)
-	var teachers []models.Teacher
-	db.Find(&teachers)
+	var uni_branches []models.UniversityBranch
+	db.Find(&uni_branches)
 	ctx.JSON(http.StatusOK,gin.H{
-		"result" : teachers,
+		"result" : uni_branches,
 	})
 }
 
-func CreateTeacher(ctx *gin.Context){
+func CreateUniversityBranch(ctx *gin.Context){
 	db := ctx.MustGet("db").(*gorm.DB)
-	var input models.CreateTeacherInput
+	var input models.UniversityBranch
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	newTeacher := models.CreateTeacherInput{
+	 UniBranch := models.UniversityBranch{
 		Name:         "",
-		Mail:         "",
-		NationalCode: "",
+		Address:      "",
+		URL:          "",
+		CreationDate: "",
+		UniversityID: 0,
+		StudentID:    0,
+		Courses:      nil,
 	}
-
-	for _, student := range input.Students {
-		newTeacher.Students = append(newTeacher.Students, student)
+	for _, newUniBranch := range input.Courses {
+		newTeacher.Students = append(s.Students, student)
 	}
 
 	db.Save(&newTeacher)
@@ -39,7 +43,7 @@ func CreateTeacher(ctx *gin.Context){
 	})
 }
 
-func UpdateTeacher(ctx *gin.Context) {
+func UpdateUniversityBranch(ctx *gin.Context) {
 	var teacher models.Teacher
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Where("id = ?", ctx.Param("id")).First(&teacher).Error; err != nil {
@@ -55,14 +59,15 @@ func UpdateTeacher(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"data": teacher})
 }
 
-func DeleteTeacher(ctx *gin.Context){
+func DeleteUniversityBranch(ctx *gin.Context){
 	db := ctx.MustGet("db").(gorm.DB)
-	var teacher models.Teacher
-	if err := db.Where("id = ?", ctx.Param("id")).First(&teacher).Error; err != nil {
+	var uni_branch models.UniversityBranch
+	if err := db.Where("id = ?", ctx.Param("id")).First(&uni_branch).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
 	}
-	db.Delete(&teacher)
+	db.Delete(&uni_branch)
 	ctx.JSON(http.StatusOK,gin.H{
 		"data":true,
 	})
+}
 }

@@ -64,21 +64,29 @@ func SetupModels() *gorm.DB {
 	//	},
 	//}
 
-    //uni := Teacher{
-	//	Name:         "Teascher1",
-	//	Mail:         "teacher.mai;",
-	//	NationalCode: "adafijsdpifjs",
-	//	Courses:      nil,
-	//	Students:     nil,
+    //uni := University{
+	//	Name:             "azad",
+	//	Address:          "teh",
+	//	URL:              "azad.ir",
+	//	CreationDate:     "1400",
+	//	UniversityBranch: []UniversityBranch{{
+	//		Name:         "azad_jonob",
+	//		Address:      "jonob",
+	//		URL:          "azdjnb.ir",
+	//		CreationDate: "1400",
+	//		UniversityID: 1,
+	//		StudentID:    0,
+	//	}},
 	//}
 	//
-	//err = db.Save(&c1).Error
+	//err = db.Save(&uni).Error
 	//if err != nil {
 	//	log.Fatal(err)
 	//}
 	//db.Save(uni)
 	//db.(&Student{}, &Course{},&UniversityBranch{},&University{})
 	//db.CreateTable(&Student{}, &Course{},&UniversityBranch{},&University{})
+
 	fmt.Println("Done ")
 	return db
 }

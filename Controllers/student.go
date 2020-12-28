@@ -33,10 +33,16 @@ func CreateStudent(ctx *gin.Context) {
 		Mail:         input.Mail,
 		NationalCode: input.NationalCode,
 		Address:      input.Address,
+		UniversityID: input.UniversityID,
+
+	}
+	for _, teacher := range input.Teachers {
+		newStudent.Teachers = append(newStudent.Teachers, teacher)
 	}
 	for _, course := range input.Courses {
 		newStudent.Courses = append(newStudent.Courses, course)
 	}
+
 	db.Save(&newStudent)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 
