@@ -7,7 +7,7 @@ type Student struct {
 	Name         string   `json:"name"`
 	Age          int      `json:"age"`
 	Mail         string   `json:"mail"`
-	NationalCode string   `json:"nationalCode"`
+	NationalCode string   `gorm:"unique"json:"nationalCode"`
 	Address      string   `json:"address"`
 	Courses      []Course `gorm:"many2many:students_courses"`
 	Teachers      []Teacher `gorm:"many2many:students_teachers"`

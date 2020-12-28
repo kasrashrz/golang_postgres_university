@@ -35,8 +35,8 @@ func CreateCourse(ctx *gin.Context){
 	for _, student := range input.Students{
 		newCourse.Students = append(newCourse.Students, student)
 	}
-	for _, uni_branch := range input.UniversityBranch{
-		newCourse.UniversityBranch = append(newCourse.UniversityBranch, uni_branch)
+	for _, university_branches := range input.UniversityBranches{
+		newCourse.UniversityBranches = append(newCourse.UniversityBranches, university_branches)
 	}
 	db.Save(&newCourse)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
