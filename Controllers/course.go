@@ -38,12 +38,8 @@ func CreateCourse(ctx *gin.Context){
 	for _, uni_branch := range input.UniversityBranch{
 		newCourse.UniversityBranch = append(newCourse.UniversityBranch, uni_branch)
 	}
-
-	if db.Save(&newCourse).Error = error(13345){
-
-	}
+	db.Save(&newCourse)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
-
 }
 
 func UpdateCourse(ctx *gin.Context) {
@@ -63,7 +59,7 @@ func UpdateCourse(ctx *gin.Context) {
 }
 
 func DeleteCourse(ctx *gin.Context){
-	db := ctx.MustGet("db").(gorm.DB)
+	db := ctx.MustGet("db").(*gorm.DB)
 	var course models.Course
 	if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
