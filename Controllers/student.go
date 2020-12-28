@@ -34,13 +34,10 @@ func CreateStudent(ctx *gin.Context) {
 		NationalCode: input.NationalCode,
 		Address:      input.Address,
 	}
-	for _, course := range input.Courses{
+	for _, course := range input.Courses {
 		newStudent.Courses = append(newStudent.Courses, course)
 	}
-	//fmt.Print("state3")
 	db.Save(&newStudent)
-	//fmt.Print("state4")
-
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 
 }
@@ -56,7 +53,7 @@ func UpdateStudent(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	for _, course := range input.Courses{
+	for _, course := range input.Courses {
 		student.Courses = append(student.Courses, course)
 	}
 	db.Model(&student).Updates(input)
@@ -72,5 +69,3 @@ func DeleteStudent(ctx *gin.Context) {
 	db.Delete(&student)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 }
-
-
