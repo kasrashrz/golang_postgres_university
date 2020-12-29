@@ -43,21 +43,21 @@ func CreateUniversity(ctx *gin.Context){
 	})
 }
 
-//func UpdateTeacher(ctx *gin.Context) {
-//	var teacher models.UpdateTeacherInput
-//	db := ctx.MustGet("db").(*gorm.DB)
-//	if err := db.Where("id = ?", ctx.Param("id")).First(&teacher).Error; err != nil {
-//		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-//		return
-//	}
-//	var input models.UpdateTeacherInput
-//	if err := ctx.ShouldBindJSON(&input); err != nil {
-//		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-//		return
-//	}
-//	db.Model(&teacher).Updates(input)
-//	ctx.JSON(http.StatusOK, gin.H{"data": teacher})
-//}
+func UpdateUniversity(ctx *gin.Context) {
+	var university models.UpdateUniversityInput
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Where("id = ?", ctx.Param("id")).First(&university).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	var input models.UpdateUniversityInput
+	if err := ctx.ShouldBindJSON(&input); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	db.Model(&university).Updates(input)
+	ctx.JSON(http.StatusOK, gin.H{"data": university})
+}
 
 func DeleteUniversity(ctx *gin.Context){
 	db := ctx.MustGet("db").(gorm.DB)

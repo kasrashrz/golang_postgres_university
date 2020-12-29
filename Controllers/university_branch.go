@@ -25,28 +25,28 @@ func CreateUniversityBranch(ctx *gin.Context){
 		return
 	}
 	 UniBranch := models.UniversityBranch{
-		Name:         "",
-		Address:      "",
-		URL:          "",
-		CreationDate: "",
-		UniversityID: 0,
-		StudentID:    0,
-		Courses:      nil,
-	}
-	for _, newUniBranch := range input.Courses {
-		newTeacher.Students = append(s.Students, student)
+		 Model:        gorm.Model{},
+		 Name:         "",
+		 Address:      "",
+		 URL:          "",
+		 CreationDate: "",
+		 UniversityID: 0,
+		 StudentID:    0,
+	 }
+	for _, course := range input.Courses {
+		UniBranch.Courses = append(UniBranch.Courses, course)
 	}
 
-	db.Save(&newTeacher)
+	db.Save(&UniBranch)
 	ctx.JSON(http.StatusOK,gin.H{
 		"data" : true,
 	})
 }
 
 func UpdateUniversityBranch(ctx *gin.Context) {
-	var teacher models.Teacher
+	var UniBranch models.UniversityBranch
 	db := ctx.MustGet("db").(*gorm.DB)
-	if err := db.Where("id = ?", ctx.Param("id")).First(&teacher).Error; err != nil {
+	if err := db.Where("id = ?", ctx.Param("id")).First(&UniBranch).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
@@ -55,8 +55,8 @@ func UpdateUniversityBranch(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	db.Model(&teacher).Updates(input)
-	ctx.JSON(http.StatusOK, gin.H{"data": teacher})
+	db.Model(&UniBranch).Updates(input)
+	ctx.JSON(http.StatusOK, gin.H{"data": UniBranch})
 }
 
 func DeleteUniversityBranch(ctx *gin.Context){
@@ -69,5 +69,4 @@ func DeleteUniversityBranch(ctx *gin.Context){
 	ctx.JSON(http.StatusOK,gin.H{
 		"data":true,
 	})
-}
 }

@@ -29,10 +29,17 @@ func main() {
 	server.POST("/course/delete/:id", controllers.DeleteCourse)
 	server.POST("/course/update/:id", controllers.UpdateCourse)
 	// universities
-	server.GET("/courses", controllers.FindUniversity)
-	server.POST("/course/create", controllers.CreateU)
-	server.POST("/course/delete/:id", controllers.DeleteCourse)
-	server.POST("/course/update/:id", controllers.UpdateCourse)
+	server.GET("/universities", controllers.FindUniversity)
+	server.POST("/university/create", controllers.CreateUniversity)
+	server.POST("/university/delete/:id", controllers.DeleteUniversity)
+	server.POST("/university/update/:id", controllers.UpdateUniversity)
+	// university_branches
+	server.GET("/university_branches", controllers.FindUniversityBranch)
+	server.POST("/university_branches/create", controllers.CreateUniversityBranch)
+	server.POST("/university_branches/delete/:id", controllers.DeleteUniversityBranch)
+	server.POST("/university_branches/update/:id", controllers.UpdateUniversityBranch)
+
+
 
 	server.Run()
 }
