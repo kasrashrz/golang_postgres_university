@@ -8,8 +8,8 @@ type University struct {
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
     CreationDate string	  `json:"CreationDate"`
-	Students []Student
-	UniversityBranches []UniversityBranch
+	//Students []Student 		`gorm:"ForeignKey:Name;"`
+	//UniversityBranches []UniversityBranch
 }
 
 type CreateUniversityInput struct {

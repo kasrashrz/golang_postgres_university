@@ -25,13 +25,12 @@ func CreateUniversityBranch(ctx *gin.Context){
 		return
 	}
 	 UniBranch := models.UniversityBranch{
-		 Model:        gorm.Model{},
-		 Name:         "",
-		 Address:      "",
-		 URL:          "",
-		 CreationDate: "",
-		 UniversityID: 0,
-		 StudentID:    0,
+		 Name:         input.Name,
+		 Address:      input.Address,
+		 URL:          input.URL,
+		 CreationDate: input.CreationDate,
+		 UniversityID: input.UniversityID,
+		 StudentID:    input.StudentID,
 	 }
 	for _, course := range input.Courses {
 		UniBranch.Courses = append(UniBranch.Courses, course)

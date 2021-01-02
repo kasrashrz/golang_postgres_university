@@ -4,6 +4,8 @@ import (
 	"fmt"
 	_ "fmt"
 	"gorm.io/driver/postgres"
+	"log"
+
 	//"log"
 
 	"gorm.io/gorm"
@@ -13,12 +15,14 @@ import (
 
 func SetupModels() *gorm.DB {
 	dsn := "user=admin" + " password=root"  + " dbname=go_uni	 port=5432 TimeZone=Asia/Shanghai"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true,
+	//db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true,
+	//})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: false,
 	})
 	if err != nil {
 		panic(err)
 	}
-	db.AutoMigrate(&University{},&UniversityBranch{},&Student{},&Course{})
+	db.AutoMigrate(&University{},&UniversityBranch{},&Student{},&Course{},&Teacher{})
 	//test_stu := Student{
 	//	Name:         "xxxxx",
 	//	Age:          10,
@@ -37,33 +41,42 @@ func SetupModels() *gorm.DB {
 	//	},
 	//
 	//c1 := Course{
-	//	Name:             "aljs ebra",
-	//	QuantityPlace:    20,
+	//	Name:             "aljebra",
+	//	QuantityPlace:    10,
 	//	StartDate:        "1400",
 	//	EndDate:          "1401",
 	//	CreatedDate:      "1399",
-	//	UniversityBranch: nil,
+	//	UniversityBranches: nil,
 	//	Students:		  nil,
 	//}
 
-	//test_stu2 := Student{
-	//	Name:         "mmdHasan",
+	//stu := Student{
+	//	Name:         "kasra",
 	//	Age:          10,
 	//	Mail:         "none",
-	//	NationalCode: "none",
+	//	NationalCode: "0150553692",
 	//	Address:      "teh",
 	//	Courses:      []Course{
 	//		{
-	//			//Model:         gorm.Model{},
-	//			Name:          "math",
-	//			QuantityPlace: 1,
-	//			StartDate:     "1400",
-	//			EndDate:       "1401",
-	//			CreatedDate:   "1399",
+	//			Model : gorm.Model{ID: 2},
 	//		},
 	//	},
+	//	Teachers: nil,
 	//}
-
+	uniBranch := UniversityBranch{
+		Name:         "azad jonoob",
+		Address:      "tehran",
+		URL:          "www.azad.ir",
+		CreationDate: "none",
+		Courses: []Course{
+			{
+				Model:gorm.Model{ID: 1},
+			},
+			{
+				Model:gorm.Model{ID: 2},
+			},
+		},
+	}
     //uni := University{
 	//	Name:             "azad",
 	//	Address:          "teh",
@@ -79,13 +92,11 @@ func SetupModels() *gorm.DB {
 	//	}},
 	//}
 	//
-	//err = db.Save(&uni).Error
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
+	err = db.Save(&uniBranch).Error
+	if err != nil {
+		log.Fatal(err)
+	}
 	//db.Save(uni)
-	//db.(&Student{}, &Course{},&UniversityBranch{},&University{})
-	//db.CreateTable(&Student{}, &Course{},&UniversityBranch{},&University{})
 
 	fmt.Println("Done ")
 	return db

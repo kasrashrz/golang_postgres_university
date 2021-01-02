@@ -24,13 +24,16 @@ func CreateTeacher(ctx *gin.Context){
 		return
 	}
 	newTeacher := models.CreateTeacherInput{
-		Name:         "",
-		Mail:         "",
-		NationalCode: "",
+		Name:         input.Name,
+		Mail:         input.Mail,
+		NationalCode: input.NationalCode,
 	}
 
 	for _, student := range input.Students {
 		newTeacher.Students = append(newTeacher.Students, student)
+	}
+	for _, course := range input.Courses {
+		newTeacher.Courses = append(newTeacher.Courses, course)
 	}
 
 	db.Save(&newTeacher)

@@ -21,8 +21,8 @@ func main() {
 	// teachers
 	server.GET("/teachers", controllers.FindTeacher)
 	server.POST("/teacher/create", controllers.CreateTeacher)
-	server.POST("/teacher/delete/:id", controllers.UpdateTeacher)
 	server.POST("/teacher/delete/:id", controllers.DeleteTeacher)
+	server.POST("/teacher/update/:id", controllers.UpdateTeacher)
 	// courses
 	server.GET("/courses", controllers.FindCourse)
 	server.POST("/course/create", controllers.CreateCourse)

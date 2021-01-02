@@ -47,6 +47,7 @@ func CreateStudent(ctx *gin.Context) {
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 
 }
+
 func UpdateStudent(ctx *gin.Context) {
 	var student models.Student
 	db := ctx.MustGet("db").(*gorm.DB)

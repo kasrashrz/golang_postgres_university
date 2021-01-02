@@ -24,12 +24,10 @@ func CreateUniversity(ctx *gin.Context){
 		return
 	}
 	newUniversity := models.CreateUniversityInput{
-		Name:             "",
-		Address:          "",
-		URL:              "",
-		CreationDate:     "",
-		//Student:          nil,
-		//UniversityBranch: nil,
+		Name:             input.Name,
+		Address:          input.Address,
+		URL:              input.URL,
+		CreationDate:     input.CreationDate,
 	}
 	for _, student := range input.Students {
 		newUniversity.Students = append(newUniversity.Students, student)
