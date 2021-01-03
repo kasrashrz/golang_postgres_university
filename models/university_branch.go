@@ -8,7 +8,6 @@ type UniversityBranch struct {
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
 	CreationDate string	  `json:"CreationDate"`
-	CourseID      uint	   `json:"university_id"`
 	UniversityID uint
 	University University `gorm:"references:ID"`
 	Courses      []Course `gorm:"many2many:UniversityBranch_courses"`
@@ -20,7 +19,6 @@ type CreateUniversityBranchInput struct {
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
 	CreationDate string	  `json:"CreationDate"`
-	CourseID      uint	   `json:"university_id"`
 	UniversityID uint
 	University University  `gorm:"references:ID"`
 	Courses      []Course `gorm:"many2many:UniversityBranch_courses"`
@@ -32,7 +30,6 @@ type UpdateUniversityBranchInput struct {
 	Address      string   `json:"address"`
 	URL 		 string	  `json:"url"`
 	CreationDate string	  `json:"CreationDate"`
-	CourseID      uint	   `json:"university_id"`
 	University University `gorm:"references:ID"`
 	Courses      []Course `gorm:"many2many:UniversityBranch_courses"`
 }
