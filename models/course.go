@@ -9,6 +9,8 @@ type Course struct {
 	StartDate     string    `json:"startDate"`
 	EndDate       string    `json:"EndDate"`
 	CreatedDate   string    `json:"CreatedDate"`
+	TacherID      uint
+	Tacher Teacher `gorm:"references:ID"`
 	UniversityBranches	[]UniversityBranch `gorm:"many2many:UniversityBranch_courses;"`
 	Students      []Student `gorm:"many2many:students_courses;"`
 }

@@ -10,8 +10,9 @@ type Student struct {
 	NationalCode string   `gorm:"unique"json:"nationalCode"`
 	Address      string   `json:"address"`
 	Courses      []Course `gorm:"many2many:students_courses;"`
-	Teachers      []Teacher `gorm:"many2many:students_teachers;"`
+	//Teachers      []Teacher `gorm:"many2many:students_teachers;"`
 	UniversityID	uint 	`json:"university_id"`
+	University University `gorm:"references:ID"`
 }
 
 type CreateStudentInput struct {
@@ -19,10 +20,12 @@ type CreateStudentInput struct {
 	Name         string   `json:"name"`
 	Age          int      `json:"age"`
 	Mail         string   `json:"mail"`
-	NationalCode string   `json:"nationalCode"`
+	NationalCode string   `gorm:"unique"json:"nationalCode"`
 	Address      string   `json:"address"`
 	Courses      []Course `gorm:"many2many:students_courses;"`
-	Teachers      []Teacher `gorm:"many2many:students_teachers;"`
+	//Teachers      []Teacher `gorm:"many2many:students_teachers;"`
+	UniversityID	uint 	`json:"university_id"`
+	University University `gorm:"references:ID"`
 }
 
 type UpdateStudentInput struct {
@@ -30,8 +33,10 @@ type UpdateStudentInput struct {
 	Name         string   `json:"name"`
 	Age          int      `json:"age"`
 	Mail         string   `json:"mail"`
-	NationalCode string   `json:"nationalCode"`
+	NationalCode string   `gorm:"unique"json:"nationalCode"`
 	Address      string   `json:"address"`
-	//CourseID     uint     `sql:"index"`
-	Courses      []Course `gorm:"many2many:students_courses"`
+	Courses      []Course `gorm:"many2many:students_courses;"`
+	//Teachers      []Teacher `gorm:"many2many:students_teachers;"`
+	UniversityID	uint 	`json:"university_id"`
+	University University `gorm:"references:ID"`
 }

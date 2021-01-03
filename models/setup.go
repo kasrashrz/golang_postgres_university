@@ -23,80 +23,64 @@ func SetupModels() *gorm.DB {
 		panic(err)
 	}
 	db.AutoMigrate(&University{},&UniversityBranch{},&Student{},&Course{},&Teacher{})
-	//test_stu := Student{
-	//	Name:         "xxxxx",
-	//	Age:          10,
-	//	Mail:         "none",
-	//	NationalCode: "none",
-	//	Address:      "teh",
-	//	Courses:      []Course{
-	//		{
-	//			//Model:         gorm.Model{},
-	//			Name:          "aljebra",
-	//			QuantityPlace: 1,
-	//			StartDate:     "1400",
-	//			EndDate:       "1401",
-	//			CreatedDate:   "1399",
-	//		},
-	//	},
-	//
-	//c1 := Course{
-	//	Name:             "aljebra",
-	//	QuantityPlace:    10,
-	//	StartDate:        "1400",
-	//	EndDate:          "1401",
-	//	CreatedDate:      "1399",
-	//	UniversityBranches: nil,
-	//	Students:		  nil,
-	//}
 
-	//stu := Student{
-	//	Name:         "kasra",
-	//	Age:          10,
-	//	Mail:         "none",
-	//	NationalCode: "0150553692",
-	//	Address:      "teh",
-	//	Courses:      []Course{
-	//		{
-	//			Model : gorm.Model{ID: 2},
-	//		},
-	//	},
-	//	Teachers: nil,
-	//}
-	uniBranch := UniversityBranch{
-		Name:         "azad jonoob",
-		Address:      "tehran",
-		URL:          "www.azad.ir",
-		CreationDate: "none",
+	stu := Student{
+		Name:         "kasra",
+		Age:         	18,
+		Mail:         "kk@mailmail",
+		NationalCode: "015asd",
+		Address:      "teh",
 		Courses: []Course{
 			{
 				Model:gorm.Model{ID: 1},
 			},
-			{
-				Model:gorm.Model{ID: 2},
-			},
 		},
+		UniversityID: 1,
+		University:   University{},
 	}
-    //uni := University{
-	//	Name:             "azad",
-	//	Address:          "teh",
-	//	URL:              "azad.ir",
-	//	CreationDate:     "1400",
-	//	UniversityBranch: []UniversityBranch{{
-	//		Name:         "azad_jonob",
-	//		Address:      "jonob",
-	//		URL:          "azdjnb.ir",
-	//		CreationDate: "1400",
-	//		UniversityID: 1,
-	//		StudentID:    0,
-	//	}},
+	//
+	//uni := University{
+	//	Name:         "azad",
+	//	Address:      "tehran",
+	//	URL:          "www.azad.com",
+	//	CreationDate: "1400",
+	//}
+	//uni_branch := UniversityBranch{
+	//	Name:         "azad jonob",
+	//	Address:      "none",
+	//	URL:          "www.Ajonob.com",
+	//	CreationDate: "1401",
+	//	UniversityID: 1,
+	//	Courses: []Course{
+	//		{ Name: "math", QuantityPlace: 1, StartDate: "1399", EndDate: "1402", CreatedDate: "1399", UniversityBranches: []UniversityBranch{{Model: gorm.Model{ID: 1}}} , Students: []Student{
+	//			{ Name: "kasra", Age: 18, Mail: "kaskas@gmail.com", NationalCode: "015055", Address: "tehran", Courses: []Course{{Model: gorm.Model{ID: 1}}}, UniversityID: 1, University: University{} },
+	//		}},
+	//	},
+	//}
+	//teacher := Teacher{
+	//	Name:         "alex",
+	//	Mail:         "alex.mail",
+	//	NationalCode: "075",
+	//	Students:     []Student{
+	//		{
+	//			Model:gorm.Model{ID: 1},
+	//		},
+	//	},
+	//}
+	//err = db.Save(&uni).Error
+	//if err != nil {
+	//	log.Fatal(err)
 	//}
 	//
-	err = db.Save(&uniBranch).Error
+	//err = db.Save(&uni_branch).Error
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	err = db.Save(&stu).Error
 	if err != nil {
 		log.Fatal(err)
 	}
-	//db.Save(uni)
 
 	fmt.Println("Done ")
 	return db
