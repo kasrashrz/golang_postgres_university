@@ -4,8 +4,6 @@ import (
 	"fmt"
 	_ "fmt"
 	"gorm.io/driver/postgres"
-	"log"
-
 	//"log"
 
 	"gorm.io/gorm"
@@ -23,24 +21,24 @@ func SetupModels() *gorm.DB {
 		panic(err)
 	}
 	db.AutoMigrate(&University{},&UniversityBranch{},&Student{},&Course{},&Teacher{})
-
-	stu:=Student{
-		Name:         "kasra",
-		Age:          18,
-		Mail:         "kasra@gmail",
-		NationalCode: "015",
-		Address:      "tehran",
-		Courses:      []Course{
-			{
-				Model:gorm.Model{ID: 1},
-			},
-		},
-		UniversityID: 1,
-	}
-	err = db.Save(&stu).Error
-	if err != nil {
-		log.Fatal(err)
-	}
+	//
+	//stu:=Student{
+	//	Name:         "kasra",
+	//	Age:          18,
+	//	Mail:         "kasra@gmail",
+	//	NationalCode: "015",
+	//	Address:      "tehran",
+	//	Courses:      []Course{
+	//		{
+	//			Model:gorm.Model{ID: 1},
+	//		},
+	//	},
+	//	UniversityID: 1,
+	//}
+	//err = db.Save(&stu).Error
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 	fmt.Println("Done ")
 	return db
 }

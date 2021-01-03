@@ -3,9 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="a58d0cc6-d704-473e-abde-52bc016e5bf1" name="Default Changelist" comment="Trying to handle many2many tables in postgres using autoIncrement but its not working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/course.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/student.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/teacher.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/teacher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/university.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/university.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/university_branch.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/university_branch.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Teacher.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/Teacher.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/students.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/students.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/university.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/university.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/university_branch.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/university_branch.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -31,6 +31,7 @@ func CreateCourse(ctx *gin.Context){
 		StartDate:        input.StartDate,
 		EndDate:          input.EndDate,
 		CreatedDate:      input.CreatedDate,
+		TacherID: input.TacherID,
 	}
 	for _, student := range input.Students{
 		newCourse.Students = append(newCourse.Students, student)

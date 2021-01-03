@@ -18,22 +18,17 @@ func FindUniversity(ctx *gin.Context){
 
 func CreateUniversity(ctx *gin.Context){
 	db := ctx.MustGet("db").(*gorm.DB)
-	var input models.CreateUniversityInput
+	var input models.University
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	newUniversity := models.CreateUniversityInput{
+	newUniversity := models.University{
 		Name:             input.Name,
 		Address:          input.Address,
 		URL:              input.URL,
 		CreationDate:     input.CreationDate,
-	}
-	for _, student := range input.Students {
-		newUniversity.Students = append(newUniversity.Students, student)
-	}
-	for _, uni_branches := range input.UniversityBranches {
-		newUniversity.UniversityBranches = append(newUniversity.UniversityBranches, uni_branches)
+
 	}
 	db.Save(&newUniversity)
 	ctx.JSON(http.StatusOK,gin.H{
@@ -42,13 +37,13 @@ func CreateUniversity(ctx *gin.Context){
 }
 
 func UpdateUniversity(ctx *gin.Context) {
-	var university models.UpdateUniversityInput
+	var university models.University
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Where("id = ?", ctx.Param("id")).First(&university).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
-	var input models.UpdateUniversityInput
+	var input models.University
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

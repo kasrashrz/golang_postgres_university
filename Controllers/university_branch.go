@@ -30,7 +30,6 @@ func CreateUniversityBranch(ctx *gin.Context){
 		 URL:          input.URL,
 		 CreationDate: input.CreationDate,
 		 UniversityID: input.UniversityID,
-		 StudentID:    input.StudentID,
 	 }
 	for _, course := range input.Courses {
 		UniBranch.Courses = append(UniBranch.Courses, course)
