@@ -53,7 +53,7 @@ func UpdateUniversity(ctx *gin.Context) {
 }
 
 func DeleteUniversity(ctx *gin.Context){
-	db := ctx.MustGet("db").(gorm.DB)
+	db := ctx.MustGet("db").(*gorm.DB)
 	var university models.University
 	if err := db.Where("id = ?", ctx.Param("id")).First(&university).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
