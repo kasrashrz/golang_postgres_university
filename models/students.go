@@ -11,8 +11,8 @@ type Student struct {
 	Address      string   `json:"address"`
 	Courses      []Course `gorm:"many2many:students_courses;"`
 	//Teachers      []Teacher `gorm:"many2many:students_teachers;"`
-	UniversityID	uint 	`json:"university_id"`
-	University University `gorm:"references:ID"`
+	UniversityBranchID	uint 	`json:"university_id"`
+	UniversityBranch UniversityBranch `gorm:"references:ID"`
 }
 //
 //type CreateStudentInput struct {

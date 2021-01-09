@@ -33,7 +33,7 @@ func CreateStudent(ctx *gin.Context) {
 		Mail:         input.Mail,
 		NationalCode: input.NationalCode,
 		Address:      input.Address,
-		UniversityID: input.UniversityID,
+		UniversityBranchID: input.UniversityBranchID,
 	}
 	for _, course := range input.Courses {
 		newStudent.Courses = append(newStudent.Courses, course)
