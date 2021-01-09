@@ -34,6 +34,8 @@ func main() {
 	server.POST("/university/create", controllers.CreateUniversity)
 	server.POST("/university/delete/:id", controllers.DeleteUniversity)
 	server.POST("/university/update/:id", controllers.UpdateUniversity)
+	server.POST("/university/search/:id", controllers.FindStudentsByUniversity)
+
 	// university_branches
 	server.GET("/university_branches", controllers.FindUniversityBranch)
 	server.POST("/university_branch/create", controllers.CreateUniversityBranch)
