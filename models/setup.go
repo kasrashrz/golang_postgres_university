@@ -46,42 +46,42 @@ func SetupModels() *gorm.DB {
 	//	Mail:         "gholi@gmail.com",
 	//	NationalCode: "015055",
 	//}
-	stu := Student{
-		Name:         "jafar",
-		Age:          15,
-		Mail:         "jefri@gmail.com",
-		NationalCode: "00015",
-		Address:      "boshehr",
-		Courses:      []Course{
-			{
-				Model:gorm.Model{ID: 5},
-			},
-		},
-		UniversityID: 1,
-	}
-
-	err = db.Save(&stu).Error
-	if err != nil{
-		panic(err)
-	}
-
-	stu1 := Student{
-		Name:         "kasra",
-		Age:          18,
-		Mail:         "kas@mail.com",
-		NationalCode: "0150553692",
-		Address:      "teh",
-		Courses: []Course{
-			{
-				Model:gorm.Model{ID: 5},
-			},
-		},
-		UniversityID: 1,
-	}
-	err = db.Save(&stu1).Error
-	if err != nil{
-		panic(err)
-	}
+	//stu := Student{
+	//	Name:         "jafar",
+	//	Age:          15,
+	//	Mail:         "jefri@gmail.com",
+	//	NationalCode: "00015",
+	//	Address:      "boshehr",
+	//	Courses:      []Course{
+	//		{
+	//			Model:gorm.Model{ID: 5},
+	//		},
+	//	},
+	//	UniversityID: 1,
+	//}
+	//
+	//err = db.Save(&stu).Error
+	//if err != nil{
+	//	panic(err)
+	//}
+	//
+	//stu1 := Student{
+	//	Name:         "kasra",
+	//	Age:          18,
+	//	Mail:         "kas@mail.com",
+	//	NationalCode: "0150553692",
+	//	Address:      "teh",
+	//	Courses: []Course{
+	//		{
+	//			Model:gorm.Model{ID: 5},
+	//		},
+	//	},
+	//	UniversityID: 1,
+	//}
+	//err = db.Save(&stu1).Error
+	//if err != nil{
+	//	panic(err)
+	//}
 
 	fmt.Println("Done ")
 	return db
