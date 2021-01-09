@@ -59,6 +59,7 @@ func UpdateCourse(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"data": course})
 }
 
+
 func DeleteCourse(ctx *gin.Context){
 	db := ctx.MustGet("db").(*gorm.DB)
 	var course models.Course

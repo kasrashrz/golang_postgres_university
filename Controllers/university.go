@@ -63,3 +63,13 @@ func DeleteUniversity(ctx *gin.Context){
 		"data":true,
 	})
 }
+func FindStudents(ctx *gin.Context) {
+	//var university models.University
+	var student []models.Student
+
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Table("students").Select("*").Where("University_id = ?", ctx.Param("id")).Scan(&student).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
+	}
+	ctx.JSON(http.StatusOK, gin.H{"data": student})
+}
