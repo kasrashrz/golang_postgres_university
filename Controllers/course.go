@@ -71,3 +71,14 @@ func DeleteCourse(ctx *gin.Context){
 		"data":true,
 	})
 }
+
+
+func FindCourseByNameOrQuantiyPlace(ctx *gin.Context){
+	var course []models.Course
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Table("courses").Select("*").Where("quantity_place = ?", ctx.Param("name")).Scan(&course).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"data": course})
+}

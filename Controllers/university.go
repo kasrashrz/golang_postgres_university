@@ -63,12 +63,19 @@ func DeleteUniversity(ctx *gin.Context){
 		"data":true,
 	})
 }
-func FindStudents(ctx *gin.Context) {
-	//var university models.University
+
+/*
+SELECT students.*, university_branches.*, universities.*
+FROM ((students
+INNER JOIN university_branches ON students.university_branch_id = university_branches.id)
+INNER JOIN universities ON university_branches.university_id = universities.id and universities.id=REQUESTED UNI ID);
+*/
+
+func FindStudentsByUniversity(ctx *gin.Context) {
 	var student []models.Student
 
 	db := ctx.MustGet("db").(*gorm.DB)
-	if err := db.Table("students").Select("*").Where("University_id = ?", ctx.Param("id")).Scan(&student).Error; err != nil {
+	if err := db.Table("students").Select("*").Where("university_branch_id = ?", ctx.Param("id")).Scan(&student).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
 	}
 	ctx.JSON(http.StatusOK, gin.H{"data": student})
