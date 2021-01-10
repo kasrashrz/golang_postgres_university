@@ -72,7 +72,6 @@ func DeleteCourse(ctx *gin.Context){
 	})
 }
 
-
 func FindCourseByNameOrQuantiyPlace(ctx *gin.Context){
 	var course []models.Course
 	db := ctx.MustGet("db").(*gorm.DB)

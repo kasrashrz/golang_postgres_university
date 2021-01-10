@@ -71,3 +71,13 @@ func DeleteStudent(ctx *gin.Context) {
 	db.Delete(&student)
 	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
 }
+
+func FindStudentByNameOrMail(ctx *gin.Context){
+		var student []models.Student
+		db := ctx.MustGet("db").(*gorm.DB)
+		if err := db.Table("students").Select("*").Where("name =? OR mail = ?", ctx.Param("name"), ctx.Param("name")).Scan(&student).Error; err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+			return
+		}
+		ctx.JSON(http.StatusOK, gin.H{"data": student})
+}

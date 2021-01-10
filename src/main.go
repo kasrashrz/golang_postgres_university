@@ -18,6 +18,7 @@ func main() {
 	server.POST("/student/create", controllers.CreateStudent)
 	server.POST("/student/delete/:id", controllers.DeleteStudent)
 	server.POST("/student/update/:id", controllers.UpdateStudent)
+	server.POST("/student/search/:name", controllers.FindStudentByNameOrMail)
 	// teachers
 	server.GET("/teachers", controllers.FindTeacher)
 	server.POST("/teacher/create", controllers.CreateTeacher)
