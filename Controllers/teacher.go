@@ -61,3 +61,20 @@ func DeleteTeacher(ctx *gin.Context){
 		"data":true,
 	})
 }
+
+/*
+SELECT students.*
+FROM students
+INNER JOIN students_courses ON students.id = students_courses.student_id
+INNER JOIN courses ON courses.id = students_courses.course_id INNER JOIN teachers ON teachers.id=courses.teacher_id where teachers.id=1;
+*/
+
+func FindTeacherStudents(ctx *gin.Context){
+	var teacher models.Teacher
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Where("id = ?", ctx.Param("id")).First(&teacher).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"data": teacher})
+}
