@@ -70,11 +70,11 @@ INNER JOIN courses ON courses.id = students_courses.course_id INNER JOIN teacher
 */
 
 func FindTeacherStudents(ctx *gin.Context){
-	var teacher models.Teacher
+	var student []models.Student
 	db := ctx.MustGet("db").(*gorm.DB)
-	if err := db.Where("id = ?", ctx.Param("id")).First(&teacher).Error; err != nil {
+	if err := db.Table("students").Select("students.*").Joins("INNER JOIN students_courses ON students.id = students_courses.student_id").Joins("INNER JOIN courses ON courses.id = students_courses.course_id").Joins("INNER JOIN teachers ON teachers.id=courses.teacher_id").Where("teachers.id = ?", ctx.Param("id")).Scan(&student).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"data": teacher})
+	ctx.JSON(http.StatusOK, gin.H{"data": student})
 }
