@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a58d0cc6-d704-473e-abde-52bc016e5bf1" name="Default Changelist" comment="Trying to handle many2many tables in postgres using autoIncrement but its not working">
+      <change afterPath="$PROJECT_DIR$/Controllers/login_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Service/jwt_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Service/login_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/course.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_university.zip" beforeDir="false" afterPath="$PROJECT_DIR$/go_university.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main" beforeDir="false" afterPath="$PROJECT_DIR$/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/course.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +47,12 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="go build iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/src" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">

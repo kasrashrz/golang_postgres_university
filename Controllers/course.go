@@ -2,22 +2,20 @@ package Controllers
 
 import (
 	"fmt"
+	_ "fmt"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	models "iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/models"
-	"net/http"
 )
 
-func FindCourse(ctx *gin.Context){
-	db := ctx.MustGet("db").(*gorm.DB)
-	var courses []models.Course
-	db.Find(&courses)
-	ctx.JSON(http.StatusOK,gin.H{
-		"result" : courses,
-	})
+func FindCourse(ctx *gin.Context) {
+	var course models.Course
+	course.CREATE(ctx)
 }
 
-func CreateCourse(ctx *gin.Context){
+func CreateCourse(ctx *gin.Context) {
 	db := ctx.MustGet("db").(*gorm.DB)
 	var input models.Course
 	if err := ctx.BindJSON(&input); err != nil {
@@ -26,17 +24,17 @@ func CreateCourse(ctx *gin.Context){
 	}
 	fmt.Print(input)
 	newCourse := models.Course{
-		Name:             input.Name,
-		QuantityPlace:    input.QuantityPlace,
-		StartDate:        input.StartDate,
-		EndDate:          input.EndDate,
-		CreatedDate:      input.CreatedDate,
-		TeacherID: input.TeacherID,
+		Name:          input.Name,
+		QuantityPlace: input.QuantityPlace,
+		StartDate:     input.StartDate,
+		EndDate:       input.EndDate,
+		CreatedDate:   input.CreatedDate,
+		TeacherID:     input.TeacherID,
 	}
-	for _, student := range input.Students{
+	for _, student := range input.Students {
 		newCourse.Students = append(newCourse.Students, student)
 	}
-	for _, university_branches := range input.UniversityBranches{
+	for _, university_branches := range input.UniversityBranches {
 		newCourse.UniversityBranches = append(newCourse.UniversityBranches, university_branches)
 	}
 	db.Save(&newCourse)
@@ -59,19 +57,19 @@ func UpdateCourse(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"data": course})
 }
 
-func DeleteCourse(ctx *gin.Context){
+func DeleteCourse(ctx *gin.Context) {
 	db := ctx.MustGet("db").(*gorm.DB)
 	var course models.Course
 	if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
 	}
 	db.Delete(&course)
-	ctx.JSON(http.StatusOK,gin.H{
-		"data":true,
+	ctx.JSON(http.StatusOK, gin.H{
+		"data": true,
 	})
 }
 
-func FindCourseByNameOrQuantiyPlace(ctx *gin.Context){
+func FindCourseByNameOrQuantiyPlace(ctx *gin.Context) {
 	var course []models.Course
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Table("courses").Select("*").Where("quantity_place = ?", ctx.Param("name")).Scan(&course).Error; err != nil {
@@ -89,7 +87,7 @@ INNER JOIN university_branches ON university_branches.id=university_branch_cours
 INNER JOIN universities ON universities.id = university_branches.university_id WHERE universities.id=1;
 */
 
-func FindCourseByUni(ctx *gin.Context){
+func FindCourseByUni(ctx *gin.Context) {
 	var course []models.Course
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Table("courses").Select("courses.*").Joins("INNER JOIN university_branch_courses ON university_branch_courses.course_id=courses.id").Joins("INNER JOIN university_branches ON university_branches.id=university_branch_courses.university_branch_id").Joins("INNER JOIN universities ON universities.id = university_branches.university_id").Where("universities.id = ?", ctx.Param("id")).Scan(&course).Error; err != nil {
