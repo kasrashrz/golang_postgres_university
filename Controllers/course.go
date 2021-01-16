@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"fmt"
 	_ "fmt"
 	"net/http"
 
@@ -10,35 +9,14 @@ import (
 	models "iran.gitlab.medrick.games/medrick/server/go_lang/sample_postgres_project/models"
 )
 
+var course models.Course
+
 func FindCourse(ctx *gin.Context) {
-	var course models.Course
-	course.CREATE(ctx)
+	course.READ(ctx)
 }
 
 func CreateCourse(ctx *gin.Context) {
-	db := ctx.MustGet("db").(*gorm.DB)
-	var input models.Course
-	if err := ctx.BindJSON(&input); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	fmt.Print(input)
-	newCourse := models.Course{
-		Name:          input.Name,
-		QuantityPlace: input.QuantityPlace,
-		StartDate:     input.StartDate,
-		EndDate:       input.EndDate,
-		CreatedDate:   input.CreatedDate,
-		TeacherID:     input.TeacherID,
-	}
-	for _, student := range input.Students {
-		newCourse.Students = append(newCourse.Students, student)
-	}
-	for _, university_branches := range input.UniversityBranches {
-		newCourse.UniversityBranches = append(newCourse.UniversityBranches, university_branches)
-	}
-	db.Save(&newCourse)
-	ctx.JSON(http.StatusAccepted, gin.H{"data": true})
+	course.CREATE(ctx)
 }
 
 func UpdateCourse(ctx *gin.Context) {
