@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a58d0cc6-d704-473e-abde-52bc016e5bf1" name="Default Changelist" comment="Trying to handle many2many tables in postgres using autoIncrement but its not working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/teacher.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/teacher.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Teacher.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/Teacher.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/course.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/students.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/students.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/university.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/university.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/university.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/university.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,5 +86,16 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/models/students.go</url>
+          <line>92</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
