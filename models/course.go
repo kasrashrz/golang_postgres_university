@@ -71,7 +71,7 @@ func (input *Course) READ(ctx *gin.Context)   {
 	fmt.Println("READ INTERFACE")
 
 }
-func (course *Course) UPDATE(ctx *gin.Context) {
+func (course Course) UPDATE(ctx *gin.Context) {
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})

@@ -61,7 +61,7 @@ func (student *Student) READ(ctx *gin.Context){
 	ctx.JSON(http.StatusOK, gin.H{"result": students})
 	fmt.Println("READ INTERFACE")
 }
-func (student *Student) UPDATE(ctx *gin.Context){
+func (student Student) UPDATE(ctx *gin.Context){
 	//var student models.Student
 	db := ctx.MustGet("db").(*gorm.DB)
 	if err := db.Where("id = ?", ctx.Param("id")).First(&student).Error; err != nil {
