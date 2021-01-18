@@ -20,41 +20,15 @@ func CreateCourse(ctx *gin.Context) {
 }
 
 func UpdateCourse(ctx *gin.Context) {
-	var course models.Course
-	db := ctx.MustGet("db").(*gorm.DB)
-	if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-		return
-	}
-	var input models.Course
-	if err := ctx.ShouldBindJSON(&input); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	db.Model(&course).Updates(input)
-	ctx.JSON(http.StatusOK, gin.H{"data": course})
+	course.UPDATE(ctx)
 }
 
-func DeleteCourse(ctx *gin.Context) {
-	db := ctx.MustGet("db").(*gorm.DB)
-	var course models.Course
-	if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
-	}
-	db.Delete(&course)
-	ctx.JSON(http.StatusOK, gin.H{
-		"data": true,
-	})
+func DeleteCourse(ctx *gin.Context){
+	course.DELETE(ctx)
 }
 
 func FindCourseByNameOrQuantiyPlace(ctx *gin.Context) {
-	var course []models.Course
-	db := ctx.MustGet("db").(*gorm.DB)
-	if err := db.Table("courses").Select("*").Where("quantity_place = ?", ctx.Param("name")).Scan(&course).Error; err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-		return
-	}
-	ctx.JSON(http.StatusOK, gin.H{"data": course})
+
 }
 
 /*

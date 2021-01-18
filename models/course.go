@@ -31,6 +31,7 @@ type Course_Handler interface {
 	READ(ctx *gin.Context)
 	UPDATE(ctx *gin.Context)
 	DELETE(ctx *gin.Context)
+	CourseByNameOrQuantity(ctx *gin.Context)
 }
 
 func (course *Course) CREATE(ctx *gin.Context) {
@@ -69,5 +70,38 @@ func (input *Course) READ(ctx *gin.Context)   {
 	fmt.Println("READ INTERFACE")
 
 }
-func (input *Course) UPDATE(ctx *gin.Context) {}
-func (input *Course) DELETE(ctx *gin.Context) {}
+func (course *Course) UPDATE(ctx *gin.Context) {
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	var input Course
+	if err := ctx.ShouldBindJSON(&input); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	db.Model(&course).Updates(input)
+	ctx.JSON(http.StatusOK, gin.H{"data": course})
+	fmt.Println("UPDATE INTERFACE")
+}
+func (input *Course) DELETE(ctx *gin.Context) {
+		db := ctx.MustGet("db").(*gorm.DB)
+		var course Course
+		if err := db.Where("id = ?", ctx.Param("id")).First(&course).Error; err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
+		}
+		db.Delete(&course)
+		ctx.JSON(http.StatusOK, gin.H{
+			"data": true,
+		})
+		fmt.Println("DELETE INTERFACE")
+}
+func (course Course) CourseByNameOrQuantity(ctx *gin.Context){
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Table("courses").Select("*").Where("quantity_place = ?", ctx.Param("name")).Scan(&course).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"data": course})
+}
