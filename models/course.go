@@ -32,6 +32,7 @@ type Course_Handler interface {
 	UPDATE(ctx *gin.Context)
 	DELETE(ctx *gin.Context)
 	CourseByNameOrQuantity(ctx *gin.Context)
+	CourseByUniversity(ctx *gin.Context)
 }
 
 func (course *Course) CREATE(ctx *gin.Context) {
@@ -104,4 +105,15 @@ func (course Course) CourseByNameOrQuantity(ctx *gin.Context){
 		return
 	}
 	ctx.JSON(http.StatusOK, gin.H{"data": course})
+	fmt.Println("COURSE_NAME_OR_QUANTITY API")
+
+}
+func (course Course) CourseByUniversity(ctx *gin.Context){
+	db := ctx.MustGet("db").(*gorm.DB)
+	if err := db.Table("courses").Select("courses.*").Joins("INNER JOIN university_branch_courses ON university_branch_courses.course_id=courses.id").Joins("INNER JOIN university_branches ON university_branches.id=university_branch_courses.university_branch_id").Joins("INNER JOIN universities ON universities.id = university_branches.university_id").Where("universities.id = ?", ctx.Param("id")).Scan(&course).Error; err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"data": course})
+	fmt.Println("COURSE_UNI API")
 }
